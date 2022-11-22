@@ -1,6 +1,6 @@
 # Mean-variance analysis project
 
-Goal is to replicate some results via simulation and real world data; will finish project by late December.
+Goal is to replicate some results from a paper via simulation and real world data. 
 
 ## Authors
 
