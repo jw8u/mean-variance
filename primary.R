@@ -11,6 +11,7 @@
 source("functions.R")
 
 #changing n
+par(mfrow = c(2,2))
 mv_stock(n=52,k=10,risk_coef=50)
 mv_stock(n=78,k=10,risk_coef=50)
 mv_stock(n=104,k=10,risk_coef=50)
