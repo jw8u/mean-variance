@@ -2,7 +2,7 @@
 
 Goal is to replicate some results from a paper via simulation and real world data. Still in progress.
 
-# Usage
+## Usage
 
 Make sure primary.R and functions.R are in the same directory and that package quantmod is installed.
 ```
