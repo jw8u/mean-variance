@@ -1,12 +1,33 @@
 library(MASS)
+library(quantmod)
 
-#k is number of assets in portfolio
-#risk coefficient
-#n = size of sample
-#B = population size
-#num_rep = number of sample repetitions
+mv_stock = function(n,k,risk_coef){
+  #vector of ones
+  one_vector = rep(1,k)
+  
+  #get stock data
+  getSymbols(c("AAPL","AMGN","ADBE","CAT","COP","INTC","GIS","BA","JNJ","VZ"),from='2000-01-01')
+  sample_data = cbind(weeklyReturn(last(AAPL,paste0(n," weeks"))), weeklyReturn(last(AMGN,paste0(n," weeks"))), weeklyReturn(last(ADBE,paste0(n," weeks"))), weeklyReturn(last(CAT,paste0(n," weeks"))), weeklyReturn(last(COP,paste0(n," weeks"))), weeklyReturn(last(INTC,paste0(n," weeks"))), weeklyReturn(last(GIS,paste0(n," weeks"))), weeklyReturn(last(BA,paste0(n," weeks"))), weeklyReturn(last(JNJ,paste0(n," weeks"))), weeklyReturn(last(VZ,paste0(n," weeks"))))
+  sample_mean = colMeans(sample_data)
+  cov_sample = (n-1)*cov(sample_data)
+  
+  Q = solve(cov_sample) - (solve(cov_sample) %*% one_vector %*% t(one_vector) %*% solve(cov_sample))/as.numeric(t(one_vector) %*% solve(cov_sample) %*% one_vector)
+  expected_return_sample = (t(one_vector) %*% solve(cov_sample) %*% sample_mean)/(t(one_vector) %*% solve(cov_sample) %*% one_vector) + (t(sample_mean) %*% Q %*% sample_mean)/(risk_coef *1/(n-1))
+  c = 1/(n-k-1) + (2*n-k-1)/(n*(n-k-1)*(n-k-2))
+  expected_return_bayesian = (t(one_vector) %*% solve(cov_sample) %*% sample_mean)/(t(one_vector) %*% solve(cov_sample) %*% one_vector) + (t(sample_mean) %*% Q %*% sample_mean)/(risk_coef *c)
+  
+  R_S = (t(one_vector) %*% solve(cov_sample) %*% sample_mean)/(t(one_vector) %*% solve(cov_sample) %*% one_vector)
+  V_S = 1/((n-1)*t(one_vector) %*% solve(cov_sample) %*% one_vector)
+  V_S_Bayesian = c*(1/(t(one_vector) %*% solve(cov_sample) %*% one_vector))
+  
+  windows(width=10, height=8)
+  curve(R_S + sqrt((n-1)*(t(sample_mean) %*% Q %*% sample_mean)*(x - V_S)),from=0,to=0.1, ylab = 'R', xlab = 'V', col='black')
+  curve(R_S + sqrt((t(sample_mean) %*% Q %*% sample_mean)/c *(x - V_S)),from=0,to=0.1, col='red', add=TRUE)
+  title(main = paste0("Comparison of efficient frontiers, k = ",k,", risk aversion coefficient = ",risk_coef))
+  legend("bottomright", legend=c("Sample Frontier", "Bayesian"), col=c("black", "red"), lty=1)
+}
 
-sample_function = function(k,risk_coef,n,B,num_rep){
+simulation_function = function(k,risk_coef,n,B,num_rep){
   mu = runif(k,-0.01,0.01)
   
   #low volatility
