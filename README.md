@@ -8,7 +8,7 @@ Make sure primary.R and functions.R are in the same directory and that package q
 ```
 Rscript primary.R
 ```
-The program outputs several plots.
+The program outputs pdf of plots Rplots.pdf 
 
 ## Authors
 
