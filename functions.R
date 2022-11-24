@@ -23,7 +23,7 @@ mv_stock = function(n,k,risk_coef){
   curve(R_S + sqrt((n-1)*(t(sample_mean) %*% Q %*% sample_mean)*(x - V_S)),from=0,to=0.1, ylab = 'R', xlab = 'V', col='black')
   curve(R_S + sqrt((t(sample_mean) %*% Q %*% sample_mean)/c *(x - V_S)),from=0,to=0.1, col='red', add=TRUE)
   title(main = paste0("k = ",k,", risk aversion = ",risk_coef,", n =",n))
-  legend("bottomright", legend=c("Sample Frontier", "Bayesian"), col=c("black", "red"), lty=1, cex=0.3)
+  legend("bottomright", legend=c("Sample Frontier", "Bayesian"), col=c("black", "red"), lty=1, cex=0.6)
 }
 
 simulation_function = function(k,risk_coef,n,B,num_rep){
