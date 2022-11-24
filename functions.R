@@ -20,11 +20,10 @@ mv_stock = function(n,k,risk_coef){
   V_S = 1/((n-1)*t(one_vector) %*% solve(cov_sample) %*% one_vector)
   V_S_Bayesian = c*(1/(t(one_vector) %*% solve(cov_sample) %*% one_vector))
   
-  windows(width=10, height=8)
   curve(R_S + sqrt((n-1)*(t(sample_mean) %*% Q %*% sample_mean)*(x - V_S)),from=0,to=0.1, ylab = 'R', xlab = 'V', col='black')
   curve(R_S + sqrt((t(sample_mean) %*% Q %*% sample_mean)/c *(x - V_S)),from=0,to=0.1, col='red', add=TRUE)
-  title(main = paste0("Comparison of efficient frontiers, k = ",k,", risk aversion coefficient = ",risk_coef))
-  legend("bottomright", legend=c("Sample Frontier", "Bayesian"), col=c("black", "red"), lty=1)
+  title(main = paste0("k = ",k,", risk aversion = ",risk_coef,", n =",n))
+  legend("bottomright", legend=c("Sample Frontier", "Bayesian"), col=c("black", "red"), lty=1, cex=0.3)
 }
 
 simulation_function = function(k,risk_coef,n,B,num_rep){
