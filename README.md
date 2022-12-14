@@ -12,7 +12,7 @@ The output is a pdf of plots Rplots.pdf
 
 ## Sample Output
 ![alt text](Rplots-1.png)
-
+![alt text](Rplots-2.png)
 
 ## Authors
 
