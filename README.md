@@ -11,7 +11,7 @@ Rscript primary.R
 The output is a pdf of plots Rplots.pdf 
 
 ## Sample Output
-![Imgur Image](https://imgur.com/a/0tzqW7f.jpg)
+![alt text](Rplots-1.png)
 
 
 ## Authors
