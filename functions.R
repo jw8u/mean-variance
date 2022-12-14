@@ -1,8 +1,8 @@
-library(MASS)
-library(quantmod)
-library(BatchGetSymbols)
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(MASS, quantmod, BatchGetSymbols)
 
 mv_stock = function(n,k,risk_coef){
+  #vector of ones
   one_vector = rep(1,k)
   
   #get stock data
