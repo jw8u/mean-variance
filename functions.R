@@ -7,8 +7,8 @@ mv_stock = function(n,k,risk_coef){
   one_vector = rep(1,k)
   
   #get stock data
-  sp500 = getSymbols(sample(GetSP500Stocks()$Tickers,k))
-  weekly_returns = lapply(sp500, function(x) {weeklyReturn(get(x))})
+  sp500_sym = getSymbols(sample(GetSP500Stocks()$Tickers,k))
+  weekly_returns = lapply(sp500_sym, function(x) {weeklyReturn(get(x))})
   sample_data = as.data.frame(do.call(cbind, weekly_returns))
   sample_data = tail(sample_data,n)
   
