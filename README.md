@@ -4,7 +4,7 @@ Goal is to replicate some results from a paper via simulation and real world dat
 
 ## Usage
 
-Make sure primary.R and functions.R are in the same directory and that package quantmod is installed.
+Make sure primary.R and functions.R are in the same directory.
 ```
 Rscript primary.R
 ```
