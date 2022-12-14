@@ -3,7 +3,6 @@ library(quantmod)
 library(BatchGetSymbols)
 
 mv_stock = function(n,k,risk_coef){
-  #vector of ones
   one_vector = rep(1,k)
   
   #get stock data
