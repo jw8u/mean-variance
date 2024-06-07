@@ -1,4 +1,4 @@
-# Mean-variance analysis project
+# Mean-variance 
 
 Goal is to replicate some results from a paper via simulation and real world data. Still in progress.
 
